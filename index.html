@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Card</title>
+
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="overlay">
+            <div class="close"><img src="x.svg" alt=""></div>
+            <div class="lists">
+                <ul class="links">
+                    <li><a href="">Home</a></li>
+                    <li><a href="">Services</a></li>
+                    <li><a href="">Support</a></li>
+                </ul>
+            </div>
+        </div>
+        <header>
+            <nav>
+                <div class="logo">
+                    <img src="logo.svg" alt="">
+                </div>
+                <div class="nav-list">
+                    <ul class="links">
+                        <li><a href="">Home</a></li>
+                        <li><a href="">Services</a></li>
+                        <li><a href="">Support</a></li>
+                    </ul>
+                    <div class="cta">
+                        <button>Register</button>
+                        <button>Login</button>
+                    </div>
+                </div>
+                <div class="burger">
+                    <img src="menu.svg" alt="">
+                </div>
+            </nav>
+        </header>
+
+        <section class="body-wrapper">
+            <div class="text-section">
+                <div class="top-text">
+                    <span></span>
+                    <p>Banking cards</p>
+                </div>
+                <div class="large-text">
+                    <p>The New</p>
+                    <p>Way of Card Banking</p>
+                </div>
+                <div class="para">
+                    <p>Personalized banking just the way you love it to be Simple and easy</p>
+                </div>
+
+                <div class="cta">
+                    <button>Sign up</button>
+                    <button><span>Watch video</span><img src="play-circle.svg" /></button>
+                </div>
+            </div>
+            <div class="circle">
+                <div class="input">
+                    <input type="text" placeholder="search for card">
+                </div>
+                <div class="card">
+                    <div class="head">
+                        <div class="logo">
+                            <img src="logo.svg" alt="">
+                        </div>
+                        <div class="circles">
+                            <div class="circle-two"><span></span>
+                                <span></span></div>
+                            <p>mastercard</p>
+                        </div>
+                    </div>
+                    <div class="card-text">
+                        <p class="user-name">John Doe</p>
+                        <p class="card-number">5323 3423 1234 6432</p>
+                        <div class="validity-date">
+                            <p> <span>valid thurs </span> <span class="date">08/26</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="footer">
+            <div class="left-content">
+                <div class="logo">
+                    <img src="message-circle.svg" alt="">
+                </div>
+                <div class="text">
+                    <p>Our 24/7 Support is now ACTIVE!</p>
+                    <span>Chat Now!</span>
+                </div>
+            </div>
+            <div class="right-content">
+                <a href="">Facebook</a><a href="">/Twitter</a><a href="">/Linkedin</a>
+            </div>
+        </div>
+
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+    <script>
+
+        const burger = document.querySelector('.burger');
+        const close = document.querySelector('.close img');
+        const tl = gsap.timeline()
+        tl.from(['.large-text p', '.top-text'], { opacity: 0, y: '50px', clipPath: 'inset(85% 20% 15% 10%)', stagger: '.2' })
+        tl.from('.para', { opacity: 0, y: '50px' })
+        tl.from('.text-section .cta', { opacity: 0 })
+        tl.from('.circle', { width: '0', height: '0' }, '-=1')
+        tl.from('.card', { opacity: 0, y: '100px' })
+        tl.from('.input', { opacity: 0, x: '100px' }, '-=.4')
+        tl.from('.footer', { opacity: 0, x: '100px' })
+
+
+
+        const overlayTl = gsap.timeline()
+        overlayTl.pause(true)
+        overlayTl.to('.overlay', { duration: .1, ease: "power3.inOut", clipPath: 'circle(141.2% at 100% 0)', zIndex: '5' })
+        overlayTl.to('.close', { opacity: '1', ease: "elastic.inOut(1, 0.3)", delay: '.5' })
+        overlayTl.from('.overlay .links li', { duration: .3, opacity: 0, y: '100px', stagger: '.3' }, "-=.2")
+        function showOverlay() {
+            overlayTl.play();
+        }
+        burger.addEventListener('click', showOverlay);
+
+        function closeOverlay() {
+            overlayTl.reverse(.5)
+        }
+        close.addEventListener('click', closeOverlay)
+
+    </script>
+</body>
+
+</html>
